@@ -1,10 +1,10 @@
-import time
 import numpy as np
 from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 import selenium.webdriver.support.expected_conditions as EC
+from typing import List
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -39,7 +39,7 @@ def rank_words(letters, words):
     return np.array(sorted(scores.items(), key=lambda x: x[1], reverse=True))[:, 0]
 
 
-def get_deletions(words, correct_letters: list[str], misplaced_letters: list[str], incorrect_letters: list[str]):
+def get_deletions(words, correct_letters: List[str], misplaced_letters: List[str], incorrect_letters: List[str]):
     def should_delete(w):
         for i in range(5):
             if w[i] != correct_letters[i] and correct_letters[i] != '':
